@@ -26,6 +26,7 @@ using @html {
   thead,
   tr,
   ul,
+  video,
 }
 
 ///|
@@ -179,6 +180,25 @@ struct PrizeItem {
   award : String
   prize : String
   count : String
+}
+
+///|
+struct OrgRow {
+  label : String
+  logos : Array[OrgLogo]
+}
+
+///|
+struct OrgLogo {
+  name : String
+  src : String
+}
+
+///|
+struct JudgeItem {
+  name : String
+  desc : String
+  video_src : String
 }
 
 ///|
@@ -780,6 +800,62 @@ fn bonus_prize_items(locale : Locale) -> Array[PrizeItem] {
 }
 
 ///|
+fn organization_rows(locale : Locale) -> Array[OrgRow] {
+  [
+    {
+      label: t(locale, zh="指导单位", en="Advising organization"),
+      logos: [
+        { name: t(locale, zh="河套福保园区党群服务中心", en="Hetao-Fubao Park Party-Masses Service Center"), src: "" },
+      ],
+    },
+    {
+      label: t(locale, zh="主办单位", en="Hosts"),
+      logos: [
+        { name: t(locale, zh="中国计算机学会", en="China Computer Federation"), src: "site-assets/org-ccf.png" },
+        { name: t(locale, zh="粤港澳大湾区数字经济研究院（IDEA）", en="IDEA Research"), src: "site-assets/org-idea.png" },
+        { name: "MoonBit", src: "site-assets/org-moonbit-logo.png?v=20260519-org-logo-tune-2" },
+      ],
+    },
+    {
+      label: t(locale, zh="联合高校", en="Universities"),
+      logos: [
+        { name: t(locale, zh="中山大学软件工程学院", en="School of Software Engineering, Sun Yat-sen University"), src: "site-assets/org-sysu.png" },
+        { name: t(locale, zh="香港科技大学（广州）", en="The Hong Kong University of Science and Technology (Guangzhou)"), src: "site-assets/org-hkustgz.png" },
+        { name: t(locale, zh="深圳大学电子与信息工程学院", en="College of Electronics and Information Engineering, Shenzhen University"), src: "site-assets/org-szu.png?v=20260519-szu-logo-1" },
+      ],
+    },
+    {
+      label: t(locale, zh="合作社区", en="Community partners"),
+      logos: [
+        { name: t(locale, zh="百度｜文心大模型｜飞桨", en="Baidu | ERNIE Bot | PaddlePaddle"), src: "site-assets/org-baidu-ernie-paddle.jpg" },
+        { name: "CSDN", src: "site-assets/org-csdn.png" },
+      ],
+    },
+  ]
+}
+
+///|
+fn judge_items(locale : Locale) -> Array[JudgeItem] {
+  [
+    {
+      name: t(locale, zh="沈向洋", en="Harry Shum"),
+      desc: t(locale, zh="粤港澳大湾区数字经济研究院创院理事长", en="Founding chairman of the International Digital Economy Academy"),
+      video_src: "https://www.moonbitlang.cn/videos/shenxiangyang.mp4",
+    },
+    {
+      name: t(locale, zh="赵琛", en="Zhao Chen"),
+      desc: t(locale, zh="中国科学院软件研究所，所长", en="Director of the Institute of Software, Chinese Academy of Sciences"),
+      video_src: "https://www.moonbitlang.cn/videos/zhaozhen.mp4",
+    },
+    {
+      name: t(locale, zh="倪明选", en="Lionel Ni"),
+      desc: t(locale, zh="IEEE 终身会士、香港工程科学院院士、香港科技大学（广州）创校校长", en="IEEE Life Fellow; Fellow of the Hong Kong Academy of Engineering Sciences; founding president of HKUST(GZ)"),
+      video_src: "https://www.moonbitlang.cn/videos/nimingxuan.mp4",
+    },
+  ]
+}
+
+///|
 fn attention_items(locale : Locale) -> Array[String] {
   [
     t(
@@ -1080,6 +1156,33 @@ fn view_prize_table(
 }
 
 ///|
+fn view_organization_row(row : OrgRow) -> Html {
+  div(class="organization-row", [
+    div(class="organization-label", row.label),
+    div(class="organization-logo-wall", row.logos.map(fn(item) {
+      if item.src == "" {
+        div(class="organization-logo-card organization-logo-card--text", [
+          span(class="organization-text-logo", item.name),
+        ])
+      } else {
+        div(class="organization-logo-card", [
+          img(class="organization-logo", src=item.src, alt=item.name, nothing),
+        ])
+      }
+    })),
+  ])
+}
+
+///|
+fn view_judge_card(item : JudgeItem) -> Html {
+  article(class="judge-card", [
+    video(class="judge-video", src=item.video_src, controls=true, preload="metadata", nothing),
+    strong(item.name),
+    p(item.desc),
+  ])
+}
+
+///|
 fn view_referral_prize_card(locale : Locale) -> Html {
   article(class="prize-table-card referral-prize-card", [
     div(class="referral-prize-head", [
@@ -1126,6 +1229,47 @@ fn view_referral_prize_card(locale : Locale) -> Html {
           en="After organizers confirm that the referee has registered successfully, the referrer may receive RMB 50 per person in cash rewards, up to 30 people.",
         ),
       ),
+    ]),
+  ])
+}
+
+///|
+fn view_mvp_plan_card(locale : Locale) -> Html {
+  article(class="prize-table-card mvp-plan-card", [
+    div(class="mvp-plan-head", [
+      h3(t(locale, zh="MoonBit MVP 计划", en="MoonBit MVP Plan")),
+      span("Most Valuable Professional"),
+    ]),
+    div(
+      class="mvp-plan-qualifier",
+      t(locale, zh="通过初赛的选手可获得 MVP 免笔试资格", en="Participants who pass the preliminary round can qualify for an MVP interview waiver"),
+    ),
+    div(class="mvp-plan-work", [
+      strong(t(locale, zh="工作内容", en="Work Scope")),
+      p(
+        t(
+          locale,
+          zh="扩大 MoonBit 技术声量，为 MoonBit 生态贡献代码等。",
+          en="Expand MoonBit's technical influence and contribute code to the MoonBit ecosystem.",
+        ),
+      ),
+    ]),
+    div(class="mvp-plan-rewards", [
+      div(class="mvp-plan-reward", [
+        img(class="mvp-plan-reward-art", src="site-assets/mvp-subsidy-art.svg?v=20260519-mvp-art-1", alt="", nothing),
+        strong(t(locale, zh="补贴 2k-5k / 月", en="RMB 2k-5k / month")),
+        p(t(locale, zh="优秀者可提高", en="Higher support for outstanding contributors")),
+      ]),
+      div(class="mvp-plan-reward", [
+        img(class="mvp-plan-reward-art", src="site-assets/mvp-certificate-art.svg?v=20260519-mvp-art-1", alt="", nothing),
+        strong(t(locale, zh="MoonBit MVP", en="MoonBit MVP")),
+        p(t(locale, zh="荣誉证明", en="Honor certificate")),
+      ]),
+      div(class="mvp-plan-reward", [
+        img(class="mvp-plan-reward-art", src="site-assets/mvp-remote-art.svg?v=20260519-mvp-art-1", alt="", nothing),
+        strong(t(locale, zh="可远程", en="Remote-friendly")),
+        p(t(locale, zh="参与工作", en="Work participation")),
+      ]),
     ]),
   ])
 }
@@ -1493,6 +1637,7 @@ fn view_awards(model : Model) -> Html {
           bonus_prize_items(model.locale),
         ),
         view_referral_prize_card(model.locale),
+        view_mvp_plan_card(model.locale),
       ]),
     ]),
   ])
@@ -1655,6 +1800,41 @@ fn view_requirements(model : Model) -> Html {
 }
 
 ///|
+fn view_organization(model : Model) -> Html {
+  section(id="organization", class="section section--organization", [
+    div(class="container", [
+      section_intro(
+        t(model.locale, zh="大赛组织", en="Organization"),
+        t(model.locale, zh="组织单位与赛事荣誉评委", en="Organizers and honorary judges"),
+        t(model.locale, zh="以下信息用于官网展示，具体组织信息以后续正式章程和官方公告为准。", en="The following is for website display. Final organization details are subject to the official rules and announcements."),
+      ),
+      div(class="organization-panel", [
+        div(class="organization-list", organization_rows(model.locale).map(fn(row) {
+          view_organization_row(row)
+        })),
+        div(class="organization-judges", [
+          div(class="organization-judges-head", [
+            span(class="tag", t(model.locale, zh="大赛荣誉评委", en="Honorary Judges")),
+            span(class="organization-note", t(model.locale, zh="按姓氏笔画排序", en="Ordered by Chinese surname stroke count")),
+          ]),
+          div(class="judge-grid", judge_items(model.locale).map(fn(item) {
+            view_judge_card(item)
+          })),
+          p(
+            class="organization-series-note",
+            t(
+              model.locale,
+              zh="备注：本次比赛隶属于 MGPIC 系列赛事",
+              en="Note: This contest is part of the MGPIC series.",
+            ),
+          ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+///|
 fn view_faq(model : Model) -> Html {
   section(id="faq", class="section section--alt", [
     div(class="container", [
@@ -1716,8 +1896,51 @@ fn view_footer(model : Model) -> Html {
 }
 
 ///|
+fn view_qq_float(model : Model) -> Html {
+  div(class="qq-float", [
+    a(class="qr-float-card qr-float-card--primary", href=registration_href(), [
+      div(class="qq-float-copy", [
+        strong(t(model.locale, zh="项目申报", en="Proposal")),
+        p(t(model.locale, zh="扫码提交申报表", en="Scan to submit")),
+      ]),
+      div(class="qq-qr-box", [
+        img(
+          class="qq-qr-img",
+          src="site-assets/registration-qr.png?v=20260428-progress-system",
+          alt=t(
+            model.locale,
+            zh="赛事报名二维码",
+            en="Event registration QR code",
+          ),
+          nothing,
+        ),
+      ]),
+    ]),
+    div(class="qr-float-card", [
+      div(class="qq-float-copy", [
+        strong(t(model.locale, zh="赛事微信群", en="WeChat Group")),
+        p(t(model.locale, zh="扫码加入微信群", en="Scan to join WeChat")),
+      ]),
+      div(class="qq-qr-box", [
+        img(
+          class="qq-qr-img",
+          src="site-assets/qq-group-qr.png?v=20260519-qq-group-qr-1",
+          alt=t(
+            model.locale,
+            zh="赛事微信群二维码",
+            en="Event WeChat group QR code",
+          ),
+          nothing,
+        ),
+      ]),
+    ]),
+  ])
+}
+
+///|
 fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
-  div(class=site_class(model.theme, false), [
+  let has_qr_float = !is_standalone_page()
+  div(class=site_class(model.theme, has_qr_float), [
     view_header(dispatch, model),
     if is_progress_page() {
       main_(class="page-main", [view_progress_page(model)])
@@ -1733,10 +1956,16 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
         view_process(model),
         view_directions(model),
         view_requirements(model),
+        view_organization(model),
         view_faq(model),
       ])
     },
     view_footer(model),
+    if has_qr_float {
+      view_qq_float(model)
+    } else {
+      nothing
+    },
   ])
 }
 

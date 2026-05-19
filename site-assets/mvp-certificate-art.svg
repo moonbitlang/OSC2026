@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-label="MoonBit certificate illustration">
+  <defs>
+    <linearGradient id="paper" x1="54" y1="24" x2="164" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#f0f3ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="53" y1="35" x2="164" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff4db8"/>
+      <stop offset=".58" stop-color="#7457ff"/>
+      <stop offset="1" stop-color="#47a7ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="145%" height="145%">
+      <feDropShadow dx="0" dy="13" stdDeviation="12" flood-color="#7457ff" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <ellipse cx="113" cy="136" rx="74" ry="13" fill="#7457ff" opacity=".12"/>
+  <rect x="48" y="22" width="124" height="112" rx="18" fill="url(#paper)" stroke="#ff91cf" stroke-width="2.4" filter="url(#shadow)"/>
+  <path d="M66 51h64M66 71h86M66 91h58" stroke="#071032" stroke-width="8" stroke-linecap="round" opacity=".12"/>
+  <path d="M64 38h92" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="148" cy="100" r="22" fill="url(#accent)"/>
+  <path d="M137 100l8 8 17-19" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M136 119l-5 22 17-9 17 9-6-22" fill="#7457ff" opacity=".7"/>
+  <path d="M164 51c11-11 24-11 36 0" fill="none" stroke="#47a7ff" stroke-width="5" stroke-linecap="round" opacity=".34"/>
+  <path d="M30 92c13-13 28-13 42 0" fill="none" stroke="#ff4db8" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+</svg>
