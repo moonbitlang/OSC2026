@@ -9,6 +9,7 @@ using @html {
   h2,
   h3,
   header,
+  iframe,
   img,
   li,
   main_,
@@ -1559,6 +1560,45 @@ fn view_about(model : Model) -> Html {
 }
 
 ///|
+fn view_intro_video(model : Model) -> Html {
+  section(id="intro-video", class="section section--intro-video", [
+    div(class="container", [
+      div(class="intro-video-layout", [
+        div(class="intro-video-copy", [
+          section_intro_wide(
+            t(model.locale, zh="赛事介绍", en="Contest Intro"),
+            t(
+              model.locale,
+              zh="MoonBit 开源大赛赛事介绍",
+              en="Get a quick overview of the MoonBit open-source ecosystem contest",
+            ),
+            t(
+              model.locale,
+              zh="30分钟详细解答赛事背景、参赛方式、项目方向",
+              en="The Bilibili intro video explains the contest background, participation flow, and project directions for first-time visitors.",
+            ),
+          ),
+        ]),
+        div(class="intro-video-frame", [
+          iframe(
+            class="intro-video-iframe",
+            src="https://player.bilibili.com/player.html?bvid=BV1CGL26yEpP&page=1",
+            title=t(
+              model.locale,
+              zh="MoonBit x CCF 开源生态项目贡献赛介绍",
+              en="MoonBit x CCF Open Source Ecosystem Project Contribution Contest Intro",
+            ),
+            loading="lazy",
+            allow="fullscreen; picture-in-picture",
+            allowfullscreen=true,
+          ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+///|
 fn view_awards(model : Model) -> Html {
   section(id="awards", class="section section--prize", [
     div(class="container", [
@@ -1951,6 +1991,7 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
     } else {
       main_(class="page-main", [
         view_hero(model),
+        view_intro_video(model),
         view_about(model),
         view_awards(model),
         view_process(model),
