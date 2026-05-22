@@ -820,8 +820,8 @@ fn organization_rows(locale : Locale) -> Array[OrgRow] {
     {
       label: t(locale, zh="联合高校", en="Universities"),
       logos: [
-        { name: t(locale, zh="中山大学软件工程学院", en="School of Software Engineering, Sun Yat-sen University"), src: "site-assets/org-sysu.png" },
         { name: t(locale, zh="香港科技大学（广州）", en="The Hong Kong University of Science and Technology (Guangzhou)"), src: "site-assets/org-hkustgz.png" },
+        { name: t(locale, zh="中山大学软件工程学院", en="School of Software Engineering, Sun Yat-sen University"), src: "site-assets/org-sysu.png" },
         { name: t(locale, zh="深圳大学电子与信息工程学院", en="College of Electronics and Information Engineering, Shenzhen University"), src: "site-assets/org-szu.png?v=20260519-szu-logo-1" },
       ],
     },
