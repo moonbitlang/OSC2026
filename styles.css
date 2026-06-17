@@ -322,6 +322,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  min-width: 0;
   margin-top: 22px;
   padding: 14px 18px;
   border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
@@ -338,6 +339,11 @@ a {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
+  min-width: 0;
+}
+
+.hero-cta-copy {
+  min-width: 0;
 }
 
 .hero-cta-copy strong {
@@ -350,6 +356,7 @@ a {
   margin: 5px 0 0;
   color: var(--text-soft);
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .hero-cta-button {
@@ -1150,6 +1157,7 @@ a {
 .prize-table-card {
   position: relative;
   z-index: 1;
+  min-width: 0;
 }
 
 .prize-copy h2 {
@@ -1336,6 +1344,7 @@ a {
   grid-column: 1 / -1;
   display: grid;
   gap: 16px;
+  min-width: 0;
   padding: clamp(18px, 3vw, 28px);
   background:
     linear-gradient(90deg, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%),
@@ -1407,6 +1416,7 @@ a {
   justify-items: start;
   align-content: center;
   gap: 8px;
+  min-width: 0;
   min-height: 150px;
   padding: 24px 26px;
   border: 1px solid color-mix(in srgb, var(--primary) 34%, var(--border));
@@ -3793,6 +3803,7 @@ a {
   color: var(--primary);
   font-weight: 800;
   white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .process-table-title {
@@ -3878,6 +3889,7 @@ a {
 .organization-list {
   display: grid;
   gap: 14px;
+  min-width: 0;
 }
 
 .organization-row {
@@ -3885,6 +3897,7 @@ a {
   grid-template-columns: 150px minmax(0, 1fr);
   gap: 18px;
   align-items: center;
+  min-width: 0;
   min-height: 106px;
   margin: 0;
   padding: 16px 20px;
@@ -4396,10 +4409,12 @@ a {
     width: auto;
     padding: 14px 18px;
     border-bottom: 0;
+    overflow-wrap: anywhere;
   }
 
   .process-table-time {
     padding-bottom: 6px;
+    white-space: normal;
   }
 
   .process-table-title {
@@ -4455,16 +4470,19 @@ a {
 
   .organization-logo-wall {
     gap: 8px;
+    max-width: 100%;
   }
 
   .organization-logo-card {
+    width: 100%;
+    overflow: hidden;
     min-width: 0;
     min-height: 0;
     padding: 0;
   }
 
   .organization-logo {
-    max-width: 190px;
+    max-width: 100% !important;
     height: 42px;
   }
 
@@ -4546,6 +4564,11 @@ a {
 
   .prize-spotlight {
     padding: 16px;
+    gap: 12px;
+  }
+
+  .prize-spotlight::before {
+    display: none;
   }
 
   .prize-copy h2 {
@@ -4562,6 +4585,20 @@ a {
 
   .prize-table-card {
     padding: 12px;
+  }
+
+  .mvp-plan-card {
+    padding: 16px;
+  }
+
+  .mvp-plan-reward {
+    padding: 18px;
+  }
+
+  .mvp-plan-reward-art {
+    right: 0;
+    bottom: -12px;
+    width: min(42%, 120px);
   }
 
   .prize-table th,

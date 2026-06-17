@@ -416,7 +416,7 @@ fn process_items(locale : Locale) -> Array[ProcessItem] {
       ),
     },
     {
-      time: t(locale, zh="4 月 29 日 - 7 月 10 日", en="Apr 29 - Jul 10"),
+      time: t(locale, zh="4 月 29 日 - 7 月 12 日", en="Apr 29 - Jul 12"),
       title: t(
         locale,
         zh="项目开发与社区活动",
@@ -429,7 +429,7 @@ fn process_items(locale : Locale) -> Array[ProcessItem] {
       ),
     },
     {
-      time: t(locale, zh="7 月 11 日 - 7 月 17 日", en="Jul 11 - Jul 17"),
+      time: t(locale, zh="7 月 13 日 - 7 月 17 日", en="Jul 13 - Jul 17"),
       title: t(locale, zh="项目验收", en="Project acceptance"),
       desc: t(
         locale,
