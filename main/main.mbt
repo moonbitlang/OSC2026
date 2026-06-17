@@ -407,7 +407,7 @@ fn about_cards(locale : Locale) -> Array[InfoCard] {
 fn process_items(locale : Locale) -> Array[ProcessItem] {
   [
     {
-      time: t(locale, zh="4 月 29 日 - 7 月 10 日", en="Apr 29 - Jul 10"),
+      time: t(locale, zh="4 月 29 日 - 7 月 12 日", en="Apr 29 - Jul 12"),
       title: t(locale, zh="项目申报", en="Project proposal"),
       desc: t(
         locale,
@@ -861,8 +861,8 @@ fn attention_items(locale : Locale) -> Array[String] {
   [
     t(
       locale,
-      zh="项目申报截止到 7 月 10 日，需提交在线仓库链接和一页左右 PDF 申报书。",
-      en="Proposal submission closes on July 10. Submit an online repository link and a roughly one-page PDF proposal.",
+      zh="项目申报截止到 7 月 12 日，需提交在线仓库链接和一页左右 PDF 申报书。",
+      en="Proposal submission closes on July 12. Submit an online repository link and a roughly one-page PDF proposal.",
     ),
     t(
       locale,
@@ -1060,8 +1060,8 @@ fn view_hero(model : Model) -> Html {
           p(
             t(
               model.locale,
-              zh="4 月 29 日至 7 月 10 日，提交在线仓库链接和一页 PDF 申报书。",
-              en="Submit your online repository link and one-page PDF proposal from Apr 29 to Jul 10.",
+              zh="4 月 29 日至 7 月 12 日，提交在线仓库链接和一页 PDF 申报书。",
+              en="Submit your online repository link and one-page PDF proposal from Apr 29 to Jul 12.",
             ),
           ),
         ]),
