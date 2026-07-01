@@ -828,6 +828,7 @@ fn organization_rows(locale : Locale) -> Array[OrgRow] {
     {
       label: t(locale, zh="合作社区", en="Community partners"),
       logos: [
+        { name: "METAx", src: "site-assets/org-metax.jpg?v=20260701" },
         { name: t(locale, zh="百度｜文心大模型｜飞桨", en="Baidu | ERNIE Bot | PaddlePaddle"), src: "site-assets/org-baidu-ernie-paddle.jpg" },
         { name: "CSDN", src: "site-assets/org-csdn.png" },
       ],
@@ -1276,6 +1277,61 @@ fn view_mvp_plan_card(locale : Locale) -> Html {
 }
 
 ///|
+fn view_compute_support(model : Model) -> Html {
+  article(id="compute", class="prize-table-card compute-support-card", [
+    div(class="compute-support-copy", [
+      div(class="compute-support-kicker", [
+        span(t(model.locale, zh="合作社区算力支持", en="Community Compute Support")),
+      ]),
+      div(class="compute-support-title", [
+        img(class="compute-support-title-logo", src="site-assets/org-metax-transparent.png?v=20260701", alt="沐曦", nothing),
+        span(t(model.locale, zh="算力领取", en="Compute Credits")),
+      ]),
+      p(
+        t(
+          model.locale,
+          zh="赛事将为完成项目申报审核的参赛者提供沐曦算力券支持，用于 MoonBit 项目开发、推理验证和算力平台体验。",
+          en="The contest will provide METAx compute credits for participants who pass proposal review, supporting MoonBit development, inference validation, and compute platform trials.",
+        ),
+      ),
+      div(class="compute-support-actions", [
+        a(
+          class="button primary",
+          href=registration_href(),
+          t(model.locale, zh="先完成项目申报", en="Submit proposal first"),
+        ),
+        a(
+          class="button secondary",
+          href="https://developer.metax-tech.com/activities/19",
+          t(model.locale, zh="领取入口", en="Claim credits"),
+        ),
+      ]),
+      p(
+        class="compute-support-thanks",
+        t(model.locale, zh="感谢沐曦对本次比赛的支持", en="Thanks to METAx for supporting this contest"),
+      ),
+    ]),
+    div(class="compute-support-grid", [
+      article(class="compute-support-stat", [
+        span(t(model.locale, zh="单张额度", en="Credit value")),
+        strong(t(model.locale, zh="100 元", en="RMB 100")),
+        p(t(model.locale, zh="沐曦算力券", en="METAx compute credit")),
+      ]),
+      article(class="compute-support-stat", [
+        span(t(model.locale, zh="首批名额", en="First batch")),
+        strong(t(model.locale, zh="150 张", en="150 credits")),
+        p(t(model.locale, zh="数量有限，按通知领取", en="Limited quantity; claim by notice")),
+      ]),
+      article(class="compute-support-stat", [
+        span(t(model.locale, zh="适用场景", en="Use cases")),
+        strong(t(model.locale, zh="开发验证", en="Dev & validation")),
+        p(t(model.locale, zh="MoonBit 项目测试、推理与演示", en="MoonBit testing, inference, and demos")),
+      ]),
+    ]),
+  ])
+}
+
+///|
 fn view_showcase_signal(signal : ShowcaseSignal) -> Html {
   article(class="showcase-signal-card", [
     strong(signal.value),
@@ -1677,6 +1733,7 @@ fn view_awards(model : Model) -> Html {
           bonus_prize_items(model.locale),
         ),
         view_referral_prize_card(model.locale),
+        view_compute_support(model),
         view_mvp_plan_card(model.locale),
       ]),
     ]),
