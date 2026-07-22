@@ -262,6 +262,16 @@ fn registration_href() -> String {
 }
 
 ///|
+fn hackathon_registration_href() -> String {
+  "https://www.feishu.cn/share/base/form/shrcnfItHeB1viw56y3cGNGMqub?share_link_type=qrcode&ccm_open_type=form_qrcode"
+}
+
+///|
+fn hackathon_details_href() -> String {
+  "https://bxup9uklfcb.feishu.cn/wiki/KNrVwEVFziPHiGkQtwhc6w3gndd"
+}
+
+///|
 fn github_oauth_href() -> String {
   "https://mgpic2026.onrender.com/api/auth/github/start?return_to=%2Fprogress.html"
 }
@@ -1186,7 +1196,7 @@ fn view_judge_card(item : JudgeItem) -> Html {
 
 ///|
 fn view_referral_prize_card(locale : Locale) -> Html {
-  article(class="prize-table-card referral-prize-card", [
+  article(id="referral-reward", class="prize-table-card referral-prize-card", [
     div(class="referral-prize-head", [
       h3(t(locale, zh="转推荐奖励", en="Referral Reward")),
       span(
@@ -1658,7 +1668,7 @@ fn view_intro_video(model : Model) -> Html {
 fn view_awards(model : Model) -> Html {
   section(id="awards", class="section section--prize", [
     div(class="container", [
-      div(class="prize-spotlight", [
+      div(id="base-support", class="prize-spotlight", [
         div(class="prize-copy", [
           p(class="eyebrow", t(model.locale, zh="奖金激励", en="Awards")),
           h2(
@@ -1994,42 +2004,170 @@ fn view_footer(model : Model) -> Html {
 
 ///|
 fn view_qq_float(model : Model) -> Html {
-  div(class="qq-float", [
-    a(class="qr-float-card qr-float-card--primary", href=registration_href(), [
-      div(class="qq-float-copy", [
-        strong(t(model.locale, zh="项目申报", en="Proposal")),
-        p(t(model.locale, zh="扫码提交申报表", en="Scan to submit")),
-      ]),
-      div(class="qq-qr-box", [
+  div(class="hackathon-float", [
+    a(
+      class="hackathon-poster-link",
+      href="site-assets/hackathon-august-poster.jpg",
+      target=Blank,
+      rel="noreferrer",
+      [
         img(
-          class="qq-qr-img",
-          src="site-assets/registration-qr.png?v=20260428-progress-system",
+          class="hackathon-poster-preview",
+          src="site-assets/hackathon-august-poster-preview.jpg?v=20260722-prod-1",
           alt=t(
             model.locale,
-            zh="赛事报名二维码",
-            en="Event registration QR code",
+            zh="MoonBit 八月黑客松活动海报",
+            en="MoonBit August Hackathon poster",
           ),
           nothing,
         ),
-      ]),
-    ]),
-    div(class="qr-float-card", [
-      div(class="qq-float-copy", [
-        strong(t(model.locale, zh="赛事微信群", en="WeChat Group")),
-        p(t(model.locale, zh="扫码加入微信群", en="Scan to join WeChat")),
-      ]),
-      div(class="qq-qr-box", [
-        img(
-          class="qq-qr-img",
-          src="site-assets/qq-group-qr.png?v=20260519-qq-group-qr-1",
-          alt=t(
-            model.locale,
-            zh="赛事微信群二维码",
-            en="Event WeChat group QR code",
+        div(class="hackathon-poster-overlay", [
+          span(t(model.locale, zh="8月黑客松", en="August Hackathon")),
+          strong(
+            t(
+              model.locale,
+              zh="国产基础软件生态开源大赛",
+              en="Open Source Ecosystem Contest",
+            ),
           ),
-          nothing,
+        ]),
+      ],
+    ),
+    div(class="hackathon-float-body", [
+      div(class="hackathon-summary", [
+        strong(t(model.locale, zh="活动说明", en="About")),
+        p(
+          t(
+            model.locale,
+            zh="初审结束后，为回应开发者反馈，MoonBit 增设「8月黑客松」。",
+            en="Following developer feedback after the initial review, MoonBit is adding an August Hackathon.",
+          ),
+        ),
+        div(class="hackathon-summary-highlight", [
+          span(
+            class="hackathon-summary-highlight-label",
+            t(model.locale, zh="重要说明", en="Important"),
+          ),
+          span(
+            class="hackathon-summary-highlight-copy",
+            t(
+              model.locale,
+              zh="规则与验收标准基本一致，",
+              en="Rules and acceptance standards remain broadly consistent,",
+            ),
+          ),
+          strong(
+            t(
+              model.locale,
+              zh="但不参与决赛评选。",
+              en="but projects do not enter the contest finals.",
+            ),
+          ),
+        ]),
+        p(
+          class="hackathon-summary-tail",
+          t(
+            model.locale,
+            zh="欢迎提交全新项目；重复、拆分或简单修改项目不计入验收与奖励。",
+            en="New projects are welcome; duplicate, split, or lightly modified entries are not eligible for acceptance or rewards.",
+          ),
         ),
       ]),
+      div(class="hackathon-deadline", [
+        span(t(model.locale, zh="报名截止", en="Deadline")),
+        strong("8 月 24 日 24:00"),
+      ]),
+      div(class="hackathon-rewards", [
+        a(class="hackathon-reward", href="#base-support", [
+          strong(
+            t(
+              model.locale,
+              zh="150 元 + 350 元",
+              en="RMB 150 + 350",
+            ),
+          ),
+          span(
+            t(
+              model.locale,
+              zh="启动支持 / 完成支持",
+              en="Kickoff / completion",
+            ),
+          ),
+        ]),
+        a(class="hackathon-reward", href="#referral-reward", [
+          strong("50 元/人"),
+          span(t(model.locale, zh="推荐奖励", en="Referral")),
+        ]),
+        a(class="hackathon-reward", href="#compute", [
+          strong(t(model.locale, zh="100 元/张", en="RMB 100 / credit")),
+          span(t(model.locale, zh="GPU 算力券", en="GPU credit")),
+        ]),
+      ]),
+      div(class="hackathon-actions", [
+        a(
+          class="hackathon-apply-button",
+          href=hackathon_registration_href(),
+          target=Blank,
+          rel="noreferrer",
+          t(model.locale, zh="立即报名", en="Apply now"),
+        ),
+        a(
+          class="hackathon-detail-button",
+          href=hackathon_details_href(),
+          target=Blank,
+          rel="noreferrer",
+          t(model.locale, zh="活动详情", en="Details"),
+        ),
+      ]),
+      div(class="hackathon-qr-grid", [
+        a(
+          class="hackathon-qr-item",
+          href=hackathon_registration_href(),
+          target=Blank,
+          rel="noreferrer",
+          [
+            div(
+              class="hackathon-qr-media hackathon-qr-media--registration",
+              [
+                div(class="hackathon-qr-crop", [
+                  img(
+                    src="site-assets/hackathon-registration-qr.png?v=20260722",
+                    alt=t(
+                      model.locale,
+                      zh="赛事报名二维码",
+                      en="Event registration QR code",
+                    ),
+                    nothing,
+                  ),
+                ]),
+              ],
+            ),
+            strong(t(model.locale, zh="报名二维码", en="Registration")),
+          ],
+        ),
+        div(class="hackathon-qr-item", [
+          div(class="hackathon-qr-media", [
+            img(
+              src="site-assets/qq-group-qr.png?v=20260519-qq-group-qr-1",
+              alt=t(
+                model.locale,
+                zh="赛事交流群二维码",
+                en="Event group QR code",
+              ),
+              nothing,
+            ),
+          ]),
+          strong(t(model.locale, zh="赛事交流群", en="Event group")),
+        ]),
+      ]),
+      p(
+        class="hackathon-fine-print",
+        t(
+          model.locale,
+          zh="完成报名并通过审核后参与项目开发与验收。",
+          en="Apply and pass review to join project development and acceptance.",
+        ),
+      ),
     ]),
   ])
 }
