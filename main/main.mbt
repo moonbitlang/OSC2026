@@ -2007,13 +2007,13 @@ fn view_qq_float(model : Model) -> Html {
   div(class="hackathon-float", [
     a(
       class="hackathon-poster-link",
-      href="site-assets/hackathon-august-poster.jpg",
+      href="site-assets/hackathon-august-poster.jpg?v=20260722-poster-2",
       target=Blank,
       rel="noreferrer",
       [
         img(
           class="hackathon-poster-preview",
-          src="site-assets/hackathon-august-poster-preview.jpg?v=20260722-prod-1",
+          src="site-assets/hackathon-august-poster-preview.jpg?v=20260722-poster-2",
           alt=t(
             model.locale,
             zh="MoonBit 八月黑客松活动海报",
