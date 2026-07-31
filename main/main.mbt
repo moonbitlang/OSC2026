@@ -478,116 +478,176 @@ fn direction_cards(locale : Locale) -> Array[ListCard] {
     {
       title: t(
         locale,
-        zh="基础数据结构与算法",
-        en="Data structures and algorithms",
+        zh="语言与开发工具",
+        en="Languages and developer tools",
       ),
       desc: t(
         locale,
-        zh="适合沉淀可复用的基础算法能力。",
-        en="Reusable foundations for common algorithmic needs.",
+        zh="语言实现、编辑器能力与命令行开发体验。",
+        en="Language runtimes, editor support, and command-line developer experience.",
       ),
       items: [
         t(
           locale,
-          zh="常用数据结构，例如 indexmap、bitmask",
-          en="Common data structures such as indexmap and bitmask",
+          zh="Python、Lua、Visual Basic 等语言的解释器 / 运行时",
+          en="Interpreters and runtimes for languages such as Python, Lua, and Visual Basic",
         ),
-        t(locale, zh="Graph 相关算法库", en="Graph algorithm libraries"),
-        t(locale, zh="Pathfinding 工具库", en="Pathfinding libraries"),
+        t(locale, zh="LSP 语言服务器框架", en="LSP language server frameworks"),
         t(
           locale,
-          zh="moon prove 验证的通用算法库",
-          en="General algorithm libraries verified with moon prove",
+          zh="LaTeX、Typst 等排版语言的渲染库",
+          en="Rendering libraries for typesetting languages such as LaTeX and Typst",
+        ),
+        t(
+          locale,
+          zh="find、cat、ls 等经典命令行工具的现代替代",
+          en="Modern alternatives to classic CLI tools such as find, cat, and ls",
         ),
       ],
     },
     {
       title: t(
         locale,
-        zh="工程基础设施与工具链",
-        en="Engineering infrastructure",
+        zh="Web 与网络基础设施",
+        en="Web and networking",
       ),
       desc: t(
         locale,
-        zh="补齐 MoonBit 工程化开发常用工具。",
-        en="Common tools for MoonBit engineering workflows.",
+        zh="网络协议、服务端基础设施与轻量集成能力。",
+        en="Network protocols, server infrastructure, and lightweight integrations.",
       ),
       items: [
+        t(locale, zh="QUIC 协议库", en="QUIC protocol libraries"),
         t(
           locale,
-          zh="日志库 + tracing 工具（基于 moonbitlang/async）",
-          en="Logging + tracing tools based on moonbitlang/async",
+          zh="HTTP Web 服务器与反向代理服务器",
+          en="HTTP web servers and reverse proxy servers",
         ),
         t(
           locale,
-          zh="构建工具，类似 n2 / ninja",
-          en="Build tools similar to n2 / ninja",
-        ),
-        t(locale, zh="模板渲染器", en="Template renderer"),
-        t(
-          locale,
-          zh="Stopwatch / benchmark 小工具",
-          en="Stopwatch / benchmark helpers",
+          zh="轻量 WebHook 处理框架",
+          en="Lightweight WebHook handling frameworks",
         ),
       ],
     },
     {
       title: t(
         locale,
-        zh="系统能力与运行时框架",
-        en="Runtime and systems",
+        zh="应用开发与内容处理",
+        en="Application and content tooling",
       ),
       desc: t(
         locale,
-        zh="面向更底层的运行时、并发和格式处理能力。",
-        en="Lower-level runtime, concurrency, and format-processing capabilities.",
+        zh="面向前端、API、音频与图形布局的通用组件。",
+        en="Reusable components for frontends, APIs, audio, and graph layout.",
       ),
       items: [
         t(
           locale,
-          zh="Deterministic simulation 框架",
-          en="Deterministic simulation framework",
+          zh="前端状态管理与表单校验库",
+          en="Frontend state management and form validation libraries",
         ),
         t(
           locale,
-          zh="编译器底层基础设施，例如寄存器分配库",
-          en="Compiler infrastructure such as register allocation libraries",
+          zh="API 动态规则校验引擎",
+          en="Dynamic rule validation engines for APIs",
         ),
         t(
           locale,
-          zh="面向特定格式的（反）序列化工具，类似 protobuf",
-          en="Format-specific serialization / deserialization tools similar to protobuf",
+          zh="MoonBit 原生的 WAV / OGG 音频解码库",
+          en="Native MoonBit WAV / OGG audio decoding libraries",
         ),
         t(
           locale,
-          zh="基于 moonbitlang/async 做的并发框架，比如 actor 框架",
-          en="Concurrency frameworks based on moonbitlang/async, such as actor frameworks",
+          zh="类似 OGDF、d3-force 的自动布局引擎",
+          en="Automatic layout engines similar to OGDF and d3-force",
         ),
       ],
     },
     {
-      title: t(locale, zh="应用生态", en="Application ecosystem"),
+      title: t(
+        locale,
+        zh="并发与分布式系统",
+        en="Concurrency and distributed systems",
+      ),
       desc: t(
         locale,
-        zh="适合做可展示、可复用的生态项目。",
-        en="Presentable and reusable ecosystem projects.",
+        zh="事件驱动、并发模型与可复现系统仿真。",
+        en="Event-driven systems, concurrency models, and reproducible simulation.",
       ),
       items: [
-        t(locale, zh="Markdown to HTML 工具", en="Markdown to HTML tools"),
         t(
           locale,
-          zh="简易图表数据生成和预览",
-          en="Simple chart data generation and preview",
+          zh="事件总线与消息抽象层",
+          en="Event buses and message abstraction layers",
         ),
         t(
           locale,
-          zh="流行游戏引擎的 MoonBit 绑定",
-          en="MoonBit bindings for popular game engines",
+          zh="Actor 模型并发框架",
+          en="Actor-model concurrency frameworks",
         ),
         t(
           locale,
-          zh="流行数据库的 MoonBit 绑定",
-          en="MoonBit bindings for popular databases",
+          zh="确定性分布式系统仿真框架",
+          en="Deterministic distributed systems simulation frameworks",
+        ),
+      ],
+    },
+    {
+      title: t(
+        locale,
+        zh="数据处理与数据库",
+        en="Data processing and databases",
+      ),
+      desc: t(
+        locale,
+        zh="面向大规模计算、查询与响应式数据访问。",
+        en="Large-scale computation, querying, and reactive data access.",
+      ),
+      items: [
+        t(
+          locale,
+          zh="类似 Spark、Flink 的大数据处理引擎",
+          en="Big data processing engines similar to Spark and Flink",
+        ),
+        t(
+          locale,
+          zh="分布式 SQL 查询引擎",
+          en="Distributed SQL query engines",
+        ),
+        t(
+          locale,
+          zh="类似 ReactiveMongo 的响应式数据库驱动",
+          en="Reactive database drivers similar to ReactiveMongo",
+        ),
+      ],
+    },
+    {
+      title: t(
+        locale,
+        zh="云原生与应用生态",
+        en="Cloud native and applications",
+      ),
+      desc: t(
+        locale,
+        zh="面向 WASM、容器与真实场景的可交付项目。",
+        en="Deliverable projects for WASM, containers, and real-world scenarios.",
+      ),
+      items: [
+        t(
+          locale,
+          zh="基于 WASM 的 Kubernetes Operator 运行时",
+          en="WASM-based Kubernetes Operator runtimes",
+        ),
+        t(
+          locale,
+          zh="OCI 镜像打包工具",
+          en="OCI image packaging tools",
+        ),
+        t(
+          locale,
+          zh="其他具有展示性和复用价值的应用项目",
+          en="Other application projects with strong demonstration and reuse value",
         ),
       ],
     },
@@ -1845,18 +1905,26 @@ fn view_directions(model : Model) -> Html {
         t(model.locale, zh="项目方向", en="Directions"),
         t(
           model.locale,
-          zh="从一个可发布的 MoonBit 包开始",
-          en="Start with one publishable MoonBit package",
+          zh="从一个有生态价值的 MoonBit 项目开始",
+          en="Start with a MoonBit project that adds ecosystem value",
         ),
         t(
           model.locale,
-          zh="项目可以原创，也可以移植成熟生态里的开源库；避免直接重复 MoonBit 生态中已有且功能高度重合的成熟项目。",
-          en="Projects can be original or ports of mature open-source libraries, while avoiding mature MoonBit projects with highly overlapping functionality.",
+          zh="项目可以原创，也可以移植成熟生态中的开源项目；优先选择边界清晰、可复用、可展示，并能补足 MoonBit 生态能力的方向。",
+          en="Projects may be original or ports from mature ecosystems. Favor clear, reusable, demonstrable work that fills meaningful gaps in the MoonBit ecosystem.",
         ),
       ),
       div(
         class="showcase-grid direction-grid",
         direction_cards(model.locale).map(fn(card) { view_list_card(card) }),
+      ),
+      p(
+        class="direction-note",
+        t(
+          model.locale,
+          zh="以上方向仅供参考，参赛者也可以根据实际需求选择其他具有生态价值的项目。",
+          en="These directions are only references. Participants may choose other projects with ecosystem value based on real needs.",
+        ),
       ),
     ]),
   ])

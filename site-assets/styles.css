@@ -1028,6 +1028,10 @@ section,
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.direction-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .learn-step-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -3743,20 +3747,38 @@ section,
 }
 
 .direction-card {
-  min-height: 260px;
+  min-height: 310px;
+  padding: 24px;
 }
 
 .showcase-card.direction-card h3 {
-  font-size: clamp(17px, 1.25vw, 21px);
-  line-height: 1.18;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
+  font-size: clamp(19px, 1.35vw, 23px);
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  white-space: normal;
 }
 
 .direction-card p,
 .direction-card li {
-  font-size: 0.88rem;
-  line-height: 1.62;
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.direction-card .path-points {
+  margin-top: 18px;
+}
+
+.direction-note {
+  margin: 18px 0 0;
+  padding: 15px 18px;
+  border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
+  border-radius: var(--radius-lg);
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primary) 10%, transparent), transparent 62%),
+    var(--panel);
 }
 
 .showcase-card .tag {
@@ -5003,6 +5025,10 @@ section,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .direction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .mvp-plan-rewards {
     grid-template-columns: 1fr;
   }
@@ -5115,8 +5141,13 @@ section,
     scroll-margin-top: 132px;
   }
 
-  .showcase-card.direction-card h3 {
-    white-space: normal;
+  .direction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .direction-card {
+    min-height: auto;
+    padding: 20px;
   }
 
   .container {
