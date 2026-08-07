@@ -184,6 +184,14 @@ struct PrizeItem {
 }
 
 ///|
+struct WinnerItem {
+  team : String
+  submitter : String
+  project : String
+  href : String
+}
+
+///|
 struct OrgRow {
   label : String
   logos : Array[OrgLogo]
@@ -856,6 +864,96 @@ fn prize_items(locale : Locale) -> Array[PrizeItem] {
 }
 
 ///|
+fn top_winners() -> Array[WinnerItem] {
+  [
+    {
+      team: "WZZC",
+      submitter: "王智创",
+      project: "MoUI",
+      href: "https://github.com/wzzc-dev/MoUI",
+    },
+    {
+      team: "Arcelyth",
+      submitter: "Arcelyth",
+      project: "aitne",
+      href: "https://github.com/Arcelyth/aitne",
+    },
+    {
+      team: "jhb2032",
+      submitter: "贺博",
+      project: "MoonFrame",
+      href: "https://github.com/jhb2032/MoonFrame",
+    },
+    {
+      team: "zhengpx",
+      submitter: "郑培翔",
+      project: "Frontier Lab",
+      href: "https://github.com/shop1111/FrontierLab",
+    },
+  ]
+}
+
+///|
+fn third_prize_winners() -> Array[WinnerItem] {
+  [
+    {
+      team: "aname",
+      submitter: "howtomakeaname",
+      project: "tokenizers-moonbit",
+      href: "https://github.com/howtomakeaname/tokenizers-moonbit",
+    },
+    {
+      team: "ZSeanYves",
+      submitter: "朱潇宇",
+      project: "markitdown",
+      href: "https://github.com/ZSeanYves/markitdown",
+    },
+    {
+      team: "Eisem",
+      submitter: "杨坤维",
+      project: "moon_graphql",
+      href: "https://github.com/Eisem/moon_graphql",
+    },
+    {
+      team: "廖伟杰",
+      submitter: "廖伟杰",
+      project: "MoonBit Hex Editor",
+      href: "https://github.com/R00TK17/moonbit-HexEditor",
+    },
+    {
+      team: "黄越伶",
+      submitter: "黄越伶",
+      project: "moonsic",
+      href: "https://github.com/hyl-star/moonsic",
+    },
+    {
+      team: "KCN",
+      submitter: "朱哲皓",
+      project: "linear-algebra",
+      href: "https://github.com/Luna-Flow/linear-algebra",
+    },
+    {
+      team: "Mitsuha",
+      submitter: "彭翔",
+      project: "MoonCharts",
+      href: "https://github.com/pxgt/mooncharts",
+    },
+    {
+      team: "程柯雷",
+      submitter: "程柯雷",
+      project: "raft-moonbit",
+      href: "https://github.com/Lfan-ke/raft-moonbit",
+    },
+    {
+      team: "lillyhe",
+      submitter: "何小俐",
+      project: "MoonMarkMind",
+      href: "https://github.com/Xiao-li-He/MoonMarkMind",
+    },
+  ]
+}
+
+///|
 fn bonus_prize_items(locale : Locale) -> Array[PrizeItem] {
   [
     {
@@ -1124,23 +1222,23 @@ fn view_hero(model : Model) -> Html {
           strong(
             t(
               model.locale,
-              zh="项目申报已开放",
-              en="Proposal submission is open",
+              zh="获奖名单正式公布",
+              en="Winners officially announced",
             ),
           ),
           p(
             t(
               model.locale,
-              zh="4 月 29 日至 7 月 12 日，提交在线仓库链接和一页 PDF 申报书。",
-              en="Submit your online repository link and one-page PDF proposal from Apr 29 to Jul 12.",
+              zh="13 个优秀项目脱颖而出，点击查看获奖团队、作品与开源仓库。",
+              en="Explore the 13 winning teams, projects, and open-source repositories.",
             ),
           ),
         ]),
         div(class="hero-cta-actions", [
           a(
             class="button primary hero-cta-button",
-            href=registration_href(),
-            t(model.locale, zh="立即报名", en="Register now"),
+            href="#winners",
+            t(model.locale, zh="查看获奖名单", en="View winners"),
           ),
           a(
             class="button secondary hero-cta-button",
@@ -1164,6 +1262,103 @@ fn view_hero(model : Model) -> Html {
             href="showcase.html",
             t(model.locale, zh="作品墙", en="Showcase"),
           ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+
+///|
+fn view_winner_row(model : Model, item : WinnerItem, featured : Bool) -> Html {
+  tr([
+    td(
+      class=if featured {
+        "winner-table-award winner-table-award--featured"
+      } else {
+        "winner-table-award winner-table-award--third"
+      },
+      [
+        strong(
+          if featured {
+            t(model.locale, zh="晋级决赛", en="Finalist")
+          } else {
+            t(model.locale, zh="🥉 三等奖", en="🥉 Third Prize")
+          },
+        ),
+        span(
+          class="winner-table-award-note",
+          if featured {
+            t(
+              model.locale,
+              zh="争夺一、二等奖",
+              en="Competing for first and second prizes",
+            )
+          } else {
+            ""
+          },
+        ),
+      ],
+    ),
+    td(class="winner-table-team", item.team),
+    td(item.submitter),
+    td(class="winner-table-project", item.project),
+    td(class="winner-table-link", [
+      a(
+        href=item.href,
+        target=Blank,
+        rel="noreferrer",
+        t(model.locale, zh="查看项目 ↗", en="View project ↗"),
+      ),
+    ]),
+  ])
+}
+
+///|
+fn view_winners(model : Model) -> Html {
+  section(id="winners", class="section section--winners", [
+    div(class="container", [
+      div(class="winner-panel", [
+        div(class="winner-table-heading", [
+          section_intro_wide(
+            t(model.locale, zh="获奖名单", en="Winners"),
+            t(
+              model.locale,
+              zh="恭喜 13 个获奖项目",
+              en="Congratulations to 13 winning projects",
+            ),
+            t(
+              model.locale,
+              zh="感谢每一位开发者对 MoonBit 开源生态的投入。点击项目地址即可查看对应的 GitHub 仓库。",
+              en="Thank you to every developer contributing to the MoonBit open-source ecosystem. Use the project link to visit its GitHub repository.",
+            ),
+          ),
+          span(
+            class="winner-count-badge",
+            t(model.locale, zh="共 13 项", en="13 projects"),
+          ),
+        ]),
+        div(class="winner-table-wrap", [
+          table(class="winner-table", [
+            thead([
+              tr([
+                th(t(model.locale, zh="获奖等级", en="Award")),
+                th(t(model.locale, zh="团队名称", en="Team")),
+                th(t(model.locale, zh="提交人", en="Submitter")),
+                th(t(model.locale, zh="作品名称", en="Project")),
+                th(t(model.locale, zh="项目地址", en="Repository")),
+              ]),
+            ]),
+            tbody(
+              top_winners().map(fn(item) {
+                view_winner_row(model, item, true)
+              }),
+            ),
+            tbody(
+              third_prize_winners().map(fn(item) {
+                view_winner_row(model, item, false)
+              }),
+            ),
+          ]),
         ]),
       ]),
     ]),
@@ -2254,6 +2449,7 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
     } else {
       main_(class="page-main", [
         view_hero(model),
+        view_winners(model),
         view_intro_video(model),
         view_about(model),
         view_awards(model),
