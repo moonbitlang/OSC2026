@@ -879,10 +879,10 @@ fn top_winners() -> Array[WinnerItem] {
       href: "https://github.com/Arcelyth/aitne",
     },
     {
-      team: "jhb2032",
+      team: "ihb2032",
       submitter: "贺博",
       project: "MoonFrame",
-      href: "https://github.com/jhb2032/MoonFrame",
+      href: "https://github.com/ihb2032/MoonFrame",
     },
     {
       team: "zhengpx",
